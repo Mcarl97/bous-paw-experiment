@@ -26,7 +26,8 @@ export async function setupFlagsmith() {
     await flagsmith.identify(userId)
     // Records the exposure for this identity and returns the variation.
     const flag = flagsmith.getExperimentFlag(FLAG)
-    const variant = flag?.value === 'fees_upfront' ? 'fees_upfront' : 'control'
+    // Kill switch: if the flag is turned off in Flagsmith, everyone gets control.
+    const variant = flag?.enabled && flag.value === 'fees_upfront' ? 'fees_upfront' : 'control'
     // Send buffered events if the tab closes.
     addEventListener('pagehide', () => { flagsmith.flushEvents() })
     return { userId, variant }
