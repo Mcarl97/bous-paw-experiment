@@ -5,6 +5,8 @@ import './App.css'
 export const RATE_HTG_PER_USD = 131
 export const FEE_PERCENT = 0.03
 export const FEE_FLAT_HTG = 25
+export const MIN_HTG = 500
+export const MAX_HTG = 100000
 
 export function quote(htg) {
   const amount = Number(htg) || 0
@@ -15,7 +17,7 @@ export function quote(htg) {
 }
 
 const fmtHTG = (n) => `${Math.round(n).toLocaleString('en-US')} HTG`
-const fmtUSD = (n) => `$${n.toFixed(2)}`
+const fmtUSD = (n) => `$${n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
 
 function Breakdown({ q }) {
   return (
@@ -36,7 +38,7 @@ export default function App({ variant = 'control', onExposure, onComplete, userI
   const [htg, setHtg] = useState('')
   const q = useMemo(() => quote(htg), [htg])
   const upfront = variant === 'fees_upfront'
-  const valid = q.amount >= 500
+  const valid = q.amount >= MIN_HTG && q.amount <= MAX_HTG
 
   return (
     <div className="stage">
@@ -59,7 +61,9 @@ export default function App({ variant = 'control', onExposure, onComplete, userI
               />
               <span>HTG</span>
             </div>
-            <p className="hint">Minimum 500 HTG · Pay with MonCash or NatCash</p>
+            <p className={q.amount > MAX_HTG ? 'hint error' : 'hint'}>
+              {q.amount > MAX_HTG ? 'Maximum 100,000 HTG per top-up' : 'Min 500 HTG · Max 100,000 HTG · Pay with MonCash or NatCash'}
+            </p>
             {upfront && q.amount > 0 && <Breakdown q={q} />}
             <button disabled={!valid} onClick={() => setStep('review')}>Continue</button>
           </section>
