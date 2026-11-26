@@ -6,6 +6,9 @@ Bous Paw lets people in Haiti top up a virtual dollar card in gourdes (HTG, Hait
 
 > Demo rates and fees only. No real money moves in this app.
 
+**Demo video:** VIDEO_LINK  
+**Live app:** https://bouspawexperiment.netlify.app
+
 ## The question
 
 When someone tops up their card, when should we show the fee and the exchange rate?
@@ -38,7 +41,7 @@ The conversion rates in the script are **assumptions, not Bous Paw data**: 30% f
 
 ## Results
 
-From the Flagsmith experiment results:
+Final results from the completed Flagsmith experiment (1,044 users):
 
 | Variant | Users | Top-ups | Rate |
 | --- | --- | --- | --- |
@@ -49,7 +52,26 @@ From the Flagsmith experiment results:
 * **95% interval:** +7.8% to +51.5%
 * **Chance to win:** 99.6%
 
-**What it means:** showing the price before the user commits wins. This matches a promise Bous Paw already makes to users: the rate is shown before you confirm. Next step is to ship fees_upfront to everyone with the same flag.
+**What it means:** showing the price before the user commits wins. The 95% interval stays above zero and Flagsmith raised no sample ratio warning, so this is a real result, not noise. It also matches a promise Bous Paw already makes to users: the rate is shown before you confirm.
+
+## Shipping the winner safely
+
+After the experiment ended, fees_upfront was rolled out with the same `topup_screen` flag, in steps, with no redeploy:
+
+1. 10% of users, check the app still works
+2. 50% of users
+3. 100% of users
+
+**Kill switch:** turning `topup_screen` off in Flagsmith sends every user back to the control screen within seconds, and turning it back on restores fees_upfront. In code this is one check in [`src/flagsmith.js`](src/flagsmith.js): the variant is only used when the flag is enabled.
+
+## What we covered
+
+| Toggle Wars skill | In this project |
+| --- | --- |
+| Put features behind flags | Both top-up screens behind `topup_screen` |
+| Run a real A/B test | 50/50 Flagsmith Experiment with real exposure and conversion events |
+| Read the results properly | Lift, 95% interval, chance to win, sample ratio check |
+| Roll out to a few users first | 10% to 50% to 100%, plus a kill switch |
 
 ## Run it
 
