@@ -6,7 +6,7 @@ Bous Paw lets people in Haiti top up a virtual dollar card in gourdes (HTG, Hait
 
 > Demo rates and fees only. No real money moves in this app.
 
-**Demo video:** VIDEO_LINK  
+**Demo video:** https://youtu.be/IH3evpmlk9M  
 **Live app:** https://bouspawexperiment.netlify.app
 
 ## The question
