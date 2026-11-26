@@ -89,6 +89,7 @@ export default function App({ variant = 'control', onExposure, onComplete, userI
           </section>
         )}
 
+        <p className="disclaimer">Hackathon demo. Demo rates and fees, no real money moves.</p>
         <footer className="meta">
           <span>variant: <b>{variant}</b></span>
           {userId && <span>user: {userId}</span>}
