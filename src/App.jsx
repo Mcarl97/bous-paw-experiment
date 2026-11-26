@@ -44,8 +44,9 @@ export default function App({ variant = 'control', onExposure, onComplete, userI
     <div className="stage">
       <div className="phone">
         <header className="top">
-          <div className="brand">Bous Paw</div>
-          <div className="sub">Virtual card top-up</div>
+          <div className="brand"><img src="/logo.png" alt="" />Bous Paw</div>
+          <div className="tagline">Top up in gourdes.<br />Pay online in dollars.</div>
+          <div className="sub">Add money to your virtual card</div>
         </header>
 
         {step === 'amount' && (
