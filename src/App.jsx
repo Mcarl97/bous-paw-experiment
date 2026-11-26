@@ -63,7 +63,7 @@ export default function App({ variant = 'control', onExposure, onComplete, userI
               <span>HTG</span>
             </div>
             <p className={q.amount > MAX_HTG ? 'hint error' : 'hint'}>
-              {q.amount > MAX_HTG ? 'Maximum 100,000 HTG per top-up' : 'Min 500 HTG · Max 100,000 HTG · Pay with MonCash or NatCash'}
+              {q.amount > MAX_HTG ? 'Maximum 100,000 HTG per top-up' : 'Min 500 HTG · Max 100,000 HTG · Pay from your MonCash or NatCash mobile wallet'}
             </p>
             {upfront && q.amount > 0 && <Breakdown q={q} />}
             <button disabled={!valid} onClick={() => setStep('review')}>Continue</button>

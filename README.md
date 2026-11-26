@@ -2,7 +2,7 @@
 
 Built for **Toggle Wars: The Flagsmith Experimentation Hackathon** (Track 01, Test Something Real).
 
-Bous Paw lets people in Haiti top up a virtual dollar card in gourdes (HTG) with MonCash or NatCash, then pay online for services like Netflix, Coursera and Spotify. Bous Paw is a real product preparing to launch. This repo is a demo of its top-up screen, built to run one experiment well.
+Bous Paw lets people in Haiti top up a virtual dollar card in gourdes (HTG, Haiti's currency) from MonCash or NatCash, the two mobile money wallets most people in Haiti use, then pay online for services like Netflix, Coursera and Spotify. Bous Paw is a real product preparing to launch. This repo is a demo of its top-up screen, built to run one experiment well.
 
 > Demo rates and fees only. No real money moves in this app.
 
