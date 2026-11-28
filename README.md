@@ -73,6 +73,12 @@ After the experiment ended, fees_upfront was rolled out with the same `topup_scr
 | Read the results properly | Lift, 95% interval, chance to win, sample ratio check |
 | Roll out to a few users first | 10% to 50% to 100%, plus a kill switch |
 
+## Limitations and next steps
+
+* **Exposure is recorded at page load.** `getExperimentFlag` runs when the screen opens, but the two versions only look different once the user types an amount. Visitors who leave before typing are counted as exposed without seeing the difference. This dilutes both groups equally, so it does not favor fees_upfront: the true lift is likely higher than the +29.4% measured.
+* **For the real launch,** Bous Paw would record the exposure only when the fee area is actually on screen, using `trackExposureEvent` at that moment instead of at page load.
+* **Traffic was simulated** with assumed conversion rates. The next step is to rerun the same experiment with real Bous Paw users after launch and compare.
+
 ## Run it
 
 ```bash
